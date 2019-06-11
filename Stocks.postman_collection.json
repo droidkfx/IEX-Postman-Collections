@@ -1,0 +1,1536 @@
+{
+	"info": {
+		"_postman_id": "ca679be9-cd59-47ea-a134-ea1719fead09",
+		"name": "Stocks",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Advanced Stats",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{base_url}}/stock/:symbol/advanced-stats",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"stock",
+						":symbol",
+						"advanced-stats"
+					],
+					"query": [
+						{
+							"key": "",
+							"value": ""
+						}
+					],
+					"variable": [
+						{
+							"key": "symbol",
+							"value": "aapl",
+							"description": "a valid symbol"
+						}
+					]
+				},
+				"description": "Returns everything in key stats plus additional advanced stats such as EBITDA, ratios, key financial data, and more."
+			},
+			"response": []
+		},
+		{
+			"name": "Balance Sheet",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{base_url}}/stock/:symbol/balance-sheet",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"stock",
+						":symbol",
+						"balance-sheet"
+					],
+					"query": [
+						{
+							"key": "period",
+							"value": "",
+							"description": "Optional\nstring. Allows you to specify annual or quarterly balance sheet. Defaults to quarterly. Values should be annual or quarter",
+							"disabled": true
+						},
+						{
+							"key": "last",
+							"value": "",
+							"description": "• Optional\n• number. Specify the number of quarters or years to return. One quarter is returned by default. You can specify up to 12 quarters with quarter, or up to 4 years with annual.",
+							"disabled": true
+						}
+					],
+					"variable": [
+						{
+							"key": "symbol",
+							"value": "aapl",
+							"description": "a valid symbol"
+						}
+					]
+				},
+				"description": "Pulls balance sheet data. Available quarterly or annually with the default being the last available quarter."
+			},
+			"response": []
+		},
+		{
+			"name": "Batch Requests",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{base_url}}/stock/:symbol/batch?types=book,quote&symbols=aapl,amzn",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"stock",
+						":symbol",
+						"batch"
+					],
+					"query": [
+						{
+							"key": "types",
+							"value": "book,quote",
+							"description": "• Required \n• Comma delimited list of endpoints to call. The names should match the individual endpoint names. Limited to 10 endpoints."
+						},
+						{
+							"key": "symbols",
+							"value": "aapl,amzn",
+							"description": "• Optional \n• Comma delimited list of symbols limited to 100. This parameter is used only if market option is used."
+						},
+						{
+							"key": "range",
+							"value": null,
+							"description": "• Optional \n• Used to specify a chart range if chart is used in types parameter.",
+							"disabled": true
+						},
+						{
+							"key": "*",
+							"value": "",
+							"description": "• Optional \n• Parameters that are sent to individual endpoints can be specified in batch calls and will be applied to each supporting endpoint. For example, last can be used for the news endpoint to specify the number of articles",
+							"disabled": true
+						}
+					],
+					"variable": [
+						{
+							"key": "symbol",
+							"value": "market",
+							"description": "Use market to query multiple symbols (i.e. .../market/batch?...)"
+						}
+					]
+				},
+				"description": "Used to query multiple symbols data"
+			},
+			"response": []
+		},
+		{
+			"name": "Book",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{base_url}}/stock/:symbol/book",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"stock",
+						":symbol",
+						"book"
+					],
+					"variable": [
+						{
+							"key": "symbol",
+							"value": "aapl",
+							"description": "A valid symbol"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Cash Flow",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{base_url}}/stock/:symbol/cash-flow?period&last",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"stock",
+						":symbol",
+						"cash-flow"
+					],
+					"query": [
+						{
+							"key": "period",
+							"value": null,
+							"description": "• Optional\n• string. Allows you to specify annual or quarterly cash flow. Defaults to quarterly. Values should be annual or quarter"
+						},
+						{
+							"key": "last",
+							"value": null,
+							"description": "• Optional\n• number. Specify the number of quarters or years to return. One quarter is returned by default. You can specify up to 12 quarters with quarter, or up to 4 years with annual."
+						}
+					],
+					"variable": [
+						{
+							"key": "symbol",
+							"value": "aapl",
+							"description": "A valid symbol."
+						}
+					]
+				},
+				"description": "Pulls cash flow data. Available quarterly or annually, with the default being the last available quarter."
+			},
+			"response": []
+		},
+		{
+			"name": "Collections",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{base_url}}/stock/market/collection/:collectionType?collectionName=Airlines",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"stock",
+						"market",
+						"collection",
+						":collectionType"
+					],
+					"query": [
+						{
+							"key": "collectionName",
+							"value": "Airlines",
+							"description": "Required\nName of the sector, tag, or list to return and is case sensitive.\nSupported lists can be found under the list section.\nSupported sectors can be found in the sector ref data.\nSupported tags can be found in the tag ref data.\n*You must URL encode the collection name before sending"
+						}
+					],
+					"variable": [
+						{
+							"key": "collectionType",
+							"value": "tag",
+							"description": "One of: sector, tag, or list"
+						}
+					]
+				},
+				"description": "Returns an array of quote objects for a given collection type. Currently supported collection types are sector, tag, and list"
+			},
+			"response": []
+		},
+		{
+			"name": "Company",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{base_url}}/stock/:symbol/company",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"stock",
+						":symbol",
+						"company"
+					],
+					"variable": [
+						{
+							"key": "symbol",
+							"value": "aapl",
+							"description": "A valid symbol."
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delayed Quote",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{base_url}}/stock/:symbol/delayed-quote",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"stock",
+						":symbol",
+						"delayed-quote"
+					],
+					"variable": [
+						{
+							"key": "symbol",
+							"value": "aapl",
+							"description": "A valid symbol."
+						}
+					]
+				},
+				"description": "This returns the 15 minute delayed market quote.\n"
+			},
+			"response": []
+		},
+		{
+			"name": "Dividends",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{base_url}}/stock/:symbol/dividends/:range",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"stock",
+						":symbol",
+						"dividends",
+						":range"
+					],
+					"variable": [
+						{
+							"key": "symbol",
+							"value": "aapl",
+							"description": "A valid symbol"
+						},
+						{
+							"key": "range",
+							"value": "1y",
+							"description": "one of: 5y, 2y, 1y, ytd, 6m, 3m, 1m, or next"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Earnings",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{base_url}}/stock/:symbol/earnings/:last/:field",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"stock",
+						":symbol",
+						"earnings",
+						":last",
+						":field"
+					],
+					"query": [
+						{
+							"key": "last",
+							"value": "",
+							"description": "Optional (Number) - Number of quarters or years to return. Default is 1.",
+							"disabled": true
+						}
+					],
+					"variable": [
+						{
+							"key": "symbol",
+							"value": "aapl",
+							"description": "A valid symbol"
+						},
+						{
+							"key": "last",
+							"value": "1",
+							"description": "Optional (Number) - Number of quarters or years to return. Default is 1."
+						},
+						{
+							"key": "field",
+							"value": "",
+							"description": "Optional (String) - case sensitive string matching a response attribute below. Returns raw value of field specified. Useful for Excel Webservice calls."
+						}
+					]
+				},
+				"description": "Earnings data for a given company including the actual EPS, consensus, and fiscal period. Earnings are available quarterly (last 4 quarters)."
+			},
+			"response": []
+		},
+		{
+			"name": "Earnings Today",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{base_url}}/stock/market/today-earnings",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"stock",
+						"market",
+						"today-earnings"
+					]
+				},
+				"description": "Returns earnings that will be reported today as two arrays: before the open bto and after market close amc. Each array contains an object with all keys from earnings, a quote object, and a headline key."
+			},
+			"response": []
+		},
+		{
+			"name": "Estimates",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{base_url}}/stock/:symbol/estimates",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"stock",
+						":symbol",
+						"estimates"
+					],
+					"variable": [
+						{
+							"key": "symbol",
+							"value": "aapl",
+							"description": "A valid symbol."
+						}
+					]
+				},
+				"description": "Provides the latest consensus estimate for the next fiscal period."
+			},
+			"response": []
+		},
+		{
+			"name": "Financials",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{base_url}}/stock/:symbol/financials",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"stock",
+						":symbol",
+						"financials"
+					],
+					"query": [
+						{
+							"key": "period",
+							"value": "",
+							"description": "• Optional\n• string. Allows you to specify annual or quarterly financials. Defaults to quarterly. Values should be annual or quarterly",
+							"disabled": true
+						}
+					],
+					"variable": [
+						{
+							"key": "symbol",
+							"value": "aapl",
+							"description": "A valid symbol."
+						}
+					]
+				},
+				"description": "Pulls income statement, balance sheet, and cash flow data from the most recent reported quarter.\n\nNOTE : This endpoint is carried over from the IEX 1.0 API. Use our new cash flow, income statement, and balance sheet endpoints for new data."
+			},
+			"response": []
+		},
+		{
+			"name": "Fund Ownership",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{base_url}}/stock/:symbol/fund-ownership",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"stock",
+						":symbol",
+						"fund-ownership"
+					],
+					"variable": [
+						{
+							"key": "symbol",
+							"value": "aapl",
+							"description": "A valid symbol."
+						}
+					]
+				},
+				"description": "Returns the top 10 fund holders, meaning any firm not defined as buy-side or sell-side such as mutual funds, pension funds, endowments, investment firms, and other large entities that manage funds on behalf of others."
+			},
+			"response": []
+		},
+		{
+			"name": "Historical Prices",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{base_url}}/stock/:symbol/chart/:range/:date",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"stock",
+						":symbol",
+						"chart",
+						":range",
+						":date"
+					],
+					"query": [
+						{
+							"key": "chartCloseOnly",
+							"value": "",
+							"description": "• Optional\n• boolean. Will return adjusted data only with keys date, close, and volume.",
+							"disabled": true
+						},
+						{
+							"key": "chartByDay",
+							"value": "",
+							"description": "• Optional\n• boolean. Used only when range is date to return OHLCV data instead of minute bar data.",
+							"disabled": true
+						},
+						{
+							"key": "chartSimplify",
+							"value": "",
+							"description": "• Optional\n• boolean. If true, runs a polyline simplification using the Douglas-Peucker algorithm. This is useful if plotting sparkline charts.",
+							"disabled": true
+						},
+						{
+							"key": "chartInterval",
+							"value": "",
+							"description": "• Optional\n• number. If passed, chart data will return every Nth element as defined by chartInterval",
+							"disabled": true
+						},
+						{
+							"key": "changeFromClose",
+							"value": "",
+							"description": "• Optional\n• boolean. If true, changeOverTime and marketChangeOverTime will be relative to previous day close instead of the first value.",
+							"disabled": true
+						},
+						{
+							"key": "chartLast",
+							"value": "",
+							"description": "• Optional\n• number. If passed, chart data will return the last N elements from the time period defined by the range parameter",
+							"disabled": true
+						},
+						{
+							"key": "range",
+							"value": "",
+							"description": "• Optional\n• string. Same format as the path parameter. This can be used for batch calls.",
+							"disabled": true
+						},
+						{
+							"key": "exactDate",
+							"value": "",
+							"description": "• Optional\n• string. Formatted as YYYYMMDD. This can be used for batch calls when range is 1d or date.",
+							"disabled": true
+						}
+					],
+					"variable": [
+						{
+							"key": "symbol",
+							"value": "aapl",
+							"description": "A valid symbol."
+						},
+						{
+							"key": "range",
+							"value": "1m",
+							"description": "One of: max, 5y, 2y, 1y, ytd, 6m, 3m, 1m, date, dynamic"
+						},
+						{
+							"key": "date",
+							"value": "",
+							"description": "Date format YYYYMMDD. Currently supporting trailing 30 calendar days of minute bar data. must specify \"date\" as range."
+						}
+					]
+				},
+				"description": "Returns adjusted and unadjusted historical data for up to 15 years. Useful for building charts.\n\nNOTES : \nThis endpoint is carried over from the IEX 1.0 API, and has become too complicated. We are working on new endpoints to simplify time series queries.\n\nIf you’re looking for intraday prices, use the intraday endpoint."
+			},
+			"response": []
+		},
+		{
+			"name": "Income Statement",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{base_url}}/stock/:symbol/income",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"stock",
+						":symbol",
+						"income"
+					],
+					"query": [
+						{
+							"key": "period",
+							"value": "",
+							"description": "• Optional\n• string. Allows you to specify annual or quarterly income statement. Defaults to quarterly. Values should be annual or quarter",
+							"disabled": true
+						},
+						{
+							"key": "last",
+							"value": "",
+							"description": "• Optional\n• number. Specify the number of quarters or years to return. One quarter is returned by default. You can specify up to 12 quarters with quarter, or up to 4 years with annual.",
+							"disabled": true
+						}
+					],
+					"variable": [
+						{
+							"key": "symbol",
+							"value": "aapl",
+							"description": "A valid symbol."
+						}
+					]
+				},
+				"description": "Pulls income statement data. Available quarterly or annually with the default being the last available quarter."
+			},
+			"response": []
+		},
+		{
+			"name": "Insider Roster",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{base_url}}/stock/:symbol/insider-roster",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"stock",
+						":symbol",
+						"insider-roster"
+					],
+					"variable": [
+						{
+							"key": "symbol",
+							"value": "aapl",
+							"description": "A valid symbol."
+						}
+					]
+				},
+				"description": "Returns the top 10 insiders, with the most recent information."
+			},
+			"response": []
+		},
+		{
+			"name": "Insider Summary",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{base_url}}/stock/:symbol/insider-summary",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"stock",
+						":symbol",
+						"insider-summary"
+					],
+					"variable": [
+						{
+							"key": "symbol",
+							"value": "aapl",
+							"description": "A valid symbol."
+						}
+					]
+				},
+				"description": "Returns aggregated insiders summary data for the last 6 months."
+			},
+			"response": []
+		},
+		{
+			"name": "Insider Transactions",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{base_url}}/stock/:symbol/insider-transactions",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"stock",
+						":symbol",
+						"insider-transactions"
+					],
+					"variable": [
+						{
+							"description": "A valid symbol.",
+							"key": "symbol",
+							"value": "aapl"
+						}
+					]
+				},
+				"description": "Returns insider transactions."
+			},
+			"response": []
+		},
+		{
+			"name": "Institutional Ownership",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{base_url}}/stock/:symbol/institutional-ownership",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"stock",
+						":symbol",
+						"institutional-ownership"
+					],
+					"variable": [
+						{
+							"description": "A valid symbol.",
+							"key": "symbol",
+							"value": "aapl"
+						}
+					]
+				},
+				"description": "Returns the top 10 institutional holders, defined as buy-side or sell-side firms."
+			},
+			"response": []
+		},
+		{
+			"name": "Intraday Prices",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{base_url}}/stock/:symbol/intraday-prices",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"stock",
+						":symbol",
+						"intraday-prices"
+					],
+					"query": [
+						{
+							"key": "chartIEXOnly",
+							"value": "",
+							"description": "• Optional\n• boolean. Limits the return of intraday prices to IEX only data.",
+							"disabled": true
+						},
+						{
+							"key": "chartReset",
+							"value": "",
+							"description": "• Optional\n• boolean. If true, chart will reset at midnight instead of the default behavior of 9:30am ET.",
+							"disabled": true
+						},
+						{
+							"key": "chartSimplify",
+							"value": "",
+							"description": "• Optional\n• boolean. If true, runs a polyline simplification using the Douglas-Peucker algorithm. This is useful if plotting sparkline charts.",
+							"disabled": true
+						},
+						{
+							"key": "chartInterval",
+							"value": "",
+							"description": "• Optional\n• number. If passed, chart data will return every Nth element as defined by chartInterval",
+							"disabled": true
+						},
+						{
+							"key": "changeFromClose",
+							"value": "",
+							"description": "• Optional\n• boolean. If true, changeOverTime and marketChangeOverTime will be relative to previous day close instead of the first value.\n",
+							"disabled": true
+						},
+						{
+							"key": "chartLast",
+							"value": "",
+							"description": "• Optional\n• number. If passed, chart data will return the last N elements",
+							"disabled": true
+						}
+					],
+					"variable": [
+						{
+							"description": "A valid symbol.",
+							"key": "symbol",
+							"value": "aapl"
+						}
+					]
+				},
+				"description": "This endpoint will return aggregated intraday prices in one minute buckets\n\nNOTE : This returns 1 minute bar data where open, high, low, and close are per minute. If you need the latest stock price use the quote endpoint."
+			},
+			"response": []
+		},
+		{
+			"name": "IPO Calendar (upcoming)",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{base_url}}/stock/market/upcoming-ipos",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"stock",
+						"market",
+						"upcoming-ipos"
+					]
+				},
+				"description": "This returns a list of upcoming or today IPOs scheduled for the current and next month. The response is split into two structures: rawData and viewData. rawData represents all available data for an IPO. viewData represents data structured for display to a user."
+			},
+			"response": []
+		},
+		{
+			"name": "IPO Calendar (today)",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{base_url}}/stock/market/today-ipos",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"stock",
+						"market",
+						"today-ipos"
+					]
+				},
+				"description": "This returns a list of upcoming or today IPOs scheduled for the current and next month. The response is split into two structures: rawData and viewData. rawData represents all available data for an IPO. viewData represents data structured for display to a user."
+			},
+			"response": []
+		},
+		{
+			"name": "Key Stats",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{base_url}}/stock/:symbol/stats/:stat",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"stock",
+						":symbol",
+						"stats",
+						":stat"
+					],
+					"variable": [
+						{
+							"key": "symbol",
+							"value": "aapl",
+							"description": "A valid symbol"
+						},
+						{
+							"key": "stat",
+							"value": ""
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Largest Trades",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{base_url}}/stock/:symbol/largest-trades",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"stock",
+						":symbol",
+						"largest-trades"
+					],
+					"variable": [
+						{
+							"key": "symbol",
+							"value": "aapl",
+							"description": "A valid symbol."
+						}
+					]
+				},
+				"description": "This returns 15 minute delayed, last sale eligible trades."
+			},
+			"response": []
+		},
+		{
+			"name": "List",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{base_url}}/stock/market/list/:list-type",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"stock",
+						"market",
+						"list",
+						":list-type"
+					],
+					"query": [
+						{
+							"key": "displayPercent",
+							"value": "",
+							"description": "• Optional\n• If set to true, all percentage values will be multiplied by a factor of 100 (Ex: /stock/aapl/quote?displayPercent=true)",
+							"disabled": true
+						},
+						{
+							"key": "listLimit",
+							"value": "",
+							"description": "• Optional\n• Number of items to return, defaults to 10",
+							"disabled": true
+						}
+					],
+					"variable": [
+						{
+							"key": "list-type",
+							"value": "gainers",
+							"description": "The type to retrieve. Ex : mostactive, gainers, losers, iexvolume, iexpercent"
+						}
+					]
+				},
+				"description": "Returns an array of quotes for the top 10 symbols in a specified list."
+			},
+			"response": []
+		},
+		{
+			"name": "Logo",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{base_url}}/stock/:symbol/logo",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"stock",
+						":symbol",
+						"logo"
+					],
+					"variable": [
+						{
+							"key": "symbol",
+							"value": "aapl",
+							"description": "A valid symbol"
+						}
+					]
+				},
+				"description": "This is a helper function, but the google APIs url is standardized."
+			},
+			"response": []
+		},
+		{
+			"name": "Market Volume",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{base_url}}/stock/market/volume?",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"stock",
+						"market",
+						"volume"
+					],
+					"query": [
+						{
+							"key": "format",
+							"value": "csv",
+							"description": "• Parameter is optional\n• Value can only be csv\n• When parameter is not present, format defaults to JSON",
+							"disabled": true
+						}
+					]
+				},
+				"description": "This endpoint returns real time traded volume on U.S. markets."
+			},
+			"response": []
+		},
+		{
+			"name": "News",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{base_url}}/stock/:symbol/news/last/:last",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"stock",
+						":symbol",
+						"news",
+						"last",
+						":last"
+					],
+					"variable": [
+						{
+							"key": "symbol",
+							"value": "aapl",
+							"description": "A valid symbol"
+						},
+						{
+							"key": "last",
+							"value": "",
+							"description": "Number between 1 and 50. Default is 10. (i.e. .../news/last/1)"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "OHLC",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{base_url}}/stock/:symbol/ohlc",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"stock",
+						":symbol",
+						"ohlc"
+					],
+					"variable": [
+						{
+							"key": "symbol",
+							"value": "aapl"
+						}
+					]
+				},
+				"description": "Returns the official open and close for a give symbol. The official open is available as soon as 9:45am ET and the official close as soon as 4:15pm ET. Some stocks can report late open or close prices."
+			},
+			"response": []
+		},
+		{
+			"name": "Options (exp dates)",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{base_url}}/stock/:symbol/options",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"stock",
+						":symbol",
+						"options"
+					],
+					"variable": [
+						{
+							"key": "symbol",
+							"value": "aapl",
+							"description": "A valid symbol."
+						}
+					]
+				},
+				"description": "Returns available expiration dates."
+			},
+			"response": []
+		},
+		{
+			"name": "Options (data)",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{base_url}}/stock/:symbol/options/:expiration/:optionSide",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"stock",
+						":symbol",
+						"options",
+						":expiration",
+						":optionSide"
+					],
+					"variable": [
+						{
+							"description": "A valid symbol.",
+							"key": "symbol",
+							"value": "aapl"
+						},
+						{
+							"key": "expiration",
+							"value": "202001",
+							"description": "expiration date as YYYYMM. Optional. If not passed, the call will return all available expiration dates for the symbol."
+						},
+						{
+							"key": "optionSide",
+							"value": "",
+							"description": "Optional. put or call will return just those types of contracts."
+						}
+					]
+				},
+				"description": "Returns end of day options data."
+			},
+			"response": []
+		},
+		{
+			"name": "Peers",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{base_url}}/stock/:symbol/peers",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"stock",
+						":symbol",
+						"peers"
+					],
+					"variable": [
+						{
+							"key": "symbol",
+							"value": "aapl",
+							"description": "A valid symbol"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Previous Day Price",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{base_url}}/stock/:symbol/previous",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"stock",
+						":symbol",
+						"previous"
+					],
+					"variable": [
+						{
+							"key": "symbol",
+							"value": "market",
+							"description": "A valid symbol or \"market\""
+						}
+					]
+				},
+				"description": "This returns previous day adjusted price data for one or more stocks."
+			},
+			"response": []
+		},
+		{
+			"name": "Price",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{base_url}}/stock/:symbol/price",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"stock",
+						":symbol",
+						"price"
+					],
+					"variable": [
+						{
+							"key": "symbol",
+							"value": "aapl",
+							"description": "A valid symbol"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Price Target",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{base_url}}/stock/:symbol/price-target",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"stock",
+						":symbol",
+						"price-target"
+					],
+					"variable": [
+						{
+							"description": "A valid symbol",
+							"key": "symbol",
+							"value": "aapl"
+						}
+					]
+				},
+				"description": "Provides the latest avg, high, and low analyst price target for a symbol."
+			},
+			"response": []
+		},
+		{
+			"name": "Quote",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{base_url}}/stock/:symbol/quote/:field?displayPercent",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"stock",
+						":symbol",
+						"quote",
+						":field"
+					],
+					"query": [
+						{
+							"key": "displayPercent",
+							"value": "",
+							"description": "• Optional\n• If set to true, all percentage values will be multiplied by a factor of 100 (Ex: /stock/aapl/quote?displayPercent=true)"
+						}
+					],
+					"variable": [
+						{
+							"key": "symbol",
+							"value": "aapl",
+							"description": "A valid symbol"
+						},
+						{
+							"key": "field",
+							"value": "",
+							"description": "• Optional\n• Case sensitive string matching a response attribute below. Specifying an attribute will return just the attribute value. This is useful for Excel Webservice calls."
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Recommendation Trends",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{base_url}}/stock/:symbol/recommendation-trends",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"stock",
+						":symbol",
+						"recommendation-trends"
+					],
+					"variable": [
+						{
+							"description": "A valid symbol",
+							"key": "symbol",
+							"value": "aapl"
+						}
+					]
+				},
+				"description": "Pulls data from the last four months."
+			},
+			"response": []
+		},
+		{
+			"name": "Sector Performance",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": ""
+				},
+				"description": "This returns an array of each sector and performance for the current trading day. Performance is based on each sector ETF."
+			},
+			"response": []
+		},
+		{
+			"name": "Splits",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{base_url}}/stock/:symbol/splits/:range",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"stock",
+						":symbol",
+						"splits",
+						":range"
+					],
+					"variable": [
+						{
+							"description": "A valid symbol",
+							"key": "symbol",
+							"value": "aapl"
+						},
+						{
+							"key": "range",
+							"value": "5y",
+							"description": "One of: 5y, 2y, 1y, ytd, 6m, 3m, 1m, next"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Upcoming Events (All)",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{base_url}}/stock/:symbol/upcoming-events",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"stock",
+						":symbol",
+						"upcoming-events"
+					],
+					"query": [
+						{
+							"key": "fullUpcomingEarnings",
+							"value": "",
+							"description": "Boolean. If set to true and passed to upcoming-events or upcoming-earnings, it will return the full estimate object at the full estimate weight. This can cause the call to be in the millions of messages.",
+							"disabled": true
+						}
+					],
+					"variable": [
+						{
+							"key": "symbol",
+							"value": "aapl",
+							"description": "A valid symbol or \"market\""
+						}
+					]
+				},
+				"description": "This will return all upcoming estimates, dividends, splits for a given symbol or the market. If market is passed for the symbol, ipos will also be included.\n\nNOTE :  Use with caution. Due to the number of events returned, this can use a large number of messages. Please check the data weight of each type before using. This can return over 4,000 estimates for 40m messages."
+			},
+			"response": []
+		},
+		{
+			"name": "Upcoming Events (earnings)",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{base_url}}/stock/:symbol/upcoming-earnings",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"stock",
+						":symbol",
+						"upcoming-earnings"
+					],
+					"query": [
+						{
+							"key": "fullUpcomingEarnings",
+							"value": "",
+							"description": "Boolean. If set to true and passed to upcoming-events or upcoming-earnings, it will return the full estimate object at the full estimate weight. This can cause the call to be in the millions of messages.",
+							"disabled": true
+						}
+					],
+					"variable": [
+						{
+							"description": "A valid symbol or \"market\"",
+							"key": "symbol",
+							"value": "aapl"
+						}
+					]
+				},
+				"description": "This will return all upcoming estimates, dividends, splits for a given symbol or the market. If market is passed for the symbol, ipos will also be included.\n\nNOTE :  Use with caution. Due to the number of events returned, this can use a large number of messages. Please check the data weight of each type before using. This can return over 4,000 estimates for 40m messages."
+			},
+			"response": []
+		},
+		{
+			"name": "Upcoming Events (dividends)",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{base_url}}/stock/:symbol/upcoming-dividends",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"stock",
+						":symbol",
+						"upcoming-dividends"
+					],
+					"query": [
+						{
+							"key": "fullUpcomingEarnings",
+							"value": "",
+							"description": "Boolean. If set to true and passed to upcoming-events or upcoming-earnings, it will return the full estimate object at the full estimate weight. This can cause the call to be in the millions of messages.",
+							"disabled": true
+						}
+					],
+					"variable": [
+						{
+							"description": "A valid symbol or \"market\"",
+							"key": "symbol",
+							"value": "aapl"
+						}
+					]
+				},
+				"description": "This will return all upcoming estimates, dividends, splits for a given symbol or the market. If market is passed for the symbol, ipos will also be included.\n\nNOTE :  Use with caution. Due to the number of events returned, this can use a large number of messages. Please check the data weight of each type before using. This can return over 4,000 estimates for 40m messages."
+			},
+			"response": []
+		},
+		{
+			"name": "Upcoming Events (splits)",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{base_url}}/stock/:symbol/upcoming-splits",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"stock",
+						":symbol",
+						"upcoming-splits"
+					],
+					"query": [
+						{
+							"key": "fullUpcomingEarnings",
+							"value": "",
+							"description": "Boolean. If set to true and passed to upcoming-events or upcoming-earnings, it will return the full estimate object at the full estimate weight. This can cause the call to be in the millions of messages.",
+							"disabled": true
+						}
+					],
+					"variable": [
+						{
+							"description": "A valid symbol or \"market\"",
+							"key": "symbol",
+							"value": "aapl"
+						}
+					]
+				},
+				"description": "This will return all upcoming estimates, dividends, splits for a given symbol or the market. If market is passed for the symbol, ipos will also be included.\n\nNOTE :  Use with caution. Due to the number of events returned, this can use a large number of messages. Please check the data weight of each type before using. This can return over 4,000 estimates for 40m messages."
+			},
+			"response": []
+		},
+		{
+			"name": "Upcoming Events (ipos)",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{base_url}}/stock/:symbol/upcoming-ipos",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"stock",
+						":symbol",
+						"upcoming-ipos"
+					],
+					"query": [
+						{
+							"key": "fullUpcomingEarnings",
+							"value": "",
+							"description": "Boolean. If set to true and passed to upcoming-events or upcoming-earnings, it will return the full estimate object at the full estimate weight. This can cause the call to be in the millions of messages.",
+							"disabled": true
+						}
+					],
+					"variable": [
+						{
+							"description": "A valid symbol or \"market\"",
+							"key": "symbol",
+							"value": "aapl"
+						}
+					]
+				},
+				"description": "This will return all upcoming estimates, dividends, splits for a given symbol or the market. If market is passed for the symbol, ipos will also be included.\n\nNOTE :  Use with caution. Due to the number of events returned, this can use a large number of messages. Please check the data weight of each type before using. This can return over 4,000 estimates for 40m messages."
+			},
+			"response": []
+		},
+		{
+			"name": "Volume By Venue",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{base_url}}/stock/:symbol/volume-by-venue",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"stock",
+						":symbol",
+						"volume-by-venue"
+					],
+					"variable": [
+						{
+							"key": "symbol",
+							"value": "aapl",
+							"description": "A valid symbol"
+						}
+					]
+				},
+				"description": "This returns 15 minute delayed and 30 day average consolidated volume percentage of a stock, by market. This call will always return 13 values, and will be sorted in ascending order by current day trading volume percentage."
+			},
+			"response": []
+		}
+	],
+	"auth": {
+		"type": "apikey",
+		"apikey": [
+			{
+				"key": "value",
+				"value": "{{public_key}}",
+				"type": "string"
+			},
+			{
+				"key": "key",
+				"value": "token",
+				"type": "string"
+			},
+			{
+				"key": "in",
+				"value": "query",
+				"type": "string"
+			}
+		]
+	}
+}
