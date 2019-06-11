@@ -1,0 +1,62 @@
+{
+	"info": {
+		"_postman_id": "78dacf29-28df-4a56-9051-c139a9de473b",
+		"name": "Forex / Currencies",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Exchange Rates",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{base_url}}/fx/rate/:from/:to",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"fx",
+						"rate",
+						":from",
+						":to"
+					],
+					"variable": [
+						{
+							"key": "from",
+							"value": "usd",
+							"description": "1"
+						},
+						{
+							"key": "to",
+							"value": "eur",
+							"description": "valid three character currency code"
+						}
+					]
+				},
+				"description": "This endpoint provides an end of day exchange rate of a given currency pair."
+			},
+			"response": []
+		}
+	],
+	"auth": {
+		"type": "apikey",
+		"apikey": [
+			{
+				"key": "value",
+				"value": "{{public_key}}",
+				"type": "string"
+			},
+			{
+				"key": "key",
+				"value": "token",
+				"type": "string"
+			},
+			{
+				"key": "in",
+				"value": "query",
+				"type": "string"
+			}
+		]
+	}
+}

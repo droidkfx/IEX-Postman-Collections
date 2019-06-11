@@ -1,0 +1,62 @@
+{
+	"info": {
+		"_postman_id": "292fc9ed-bf15-4936-b045-97c2d400ea02",
+		"name": "Data Apis",
+		"description": "IEX Cloud data can be organized into three generic data APIs: time-series, data-tables, and data-points. Each API type is self describing and the docs can be accessed without an API token.",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Data Points",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{base_url}}/data-points/:symbol/:key",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"data-points",
+						":symbol",
+						":key"
+					],
+					"variable": [
+						{
+							"key": "symbol",
+							"value": "aapl",
+							"description": "The symbol to use"
+						},
+						{
+							"key": "key",
+							"value": "",
+							"description": "The key to use after a call with just a symbol is made"
+						}
+					]
+				},
+				"description": "Data points are available per symbol and return individual plain text values. Retrieving individual data points is useful for Excel and Google Sheet users, and applications where a single, lightweight value is needed. We also provide update times for some endpoints which allow you to call an endpoint only once it has new data.\n\nTo use this endpoint, you’ll first make a free call to list all available data points for your desired symbol, which can be a security or data category."
+			},
+			"response": []
+		}
+	],
+	"auth": {
+		"type": "apikey",
+		"apikey": [
+			{
+				"key": "value",
+				"value": "{{public_key}}",
+				"type": "string"
+			},
+			{
+				"key": "key",
+				"value": "token",
+				"type": "string"
+			},
+			{
+				"key": "in",
+				"value": "query",
+				"type": "string"
+			}
+		]
+	}
+}

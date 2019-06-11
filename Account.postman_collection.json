@@ -1,0 +1,204 @@
+{
+	"info": {
+		"_postman_id": "f38d70ea-af62-45cc-a292-515eb647105d",
+		"name": "Account",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Metadata",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{base_url}}/account/metadata",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"account",
+						"metadata"
+					]
+				},
+				"description": "Used to retrieve account details such as current tier, payment status, message quote usage, etc."
+			},
+			"response": [
+				{
+					"name": "Metadata",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/account/metadata",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"account",
+								"metadata"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Server",
+							"value": "nginx"
+						},
+						{
+							"key": "Date",
+							"value": "Tue, 11 Jun 2019 16:05:14 GMT"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Transfer-Encoding",
+							"value": "chunked"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "iexcloud-messages-used",
+							"value": "0"
+						},
+						{
+							"key": "X-Content-Type-Options",
+							"value": "nosniff"
+						},
+						{
+							"key": "Content-Encoding",
+							"value": "gzip"
+						},
+						{
+							"key": "Strict-Transport-Security",
+							"value": "max-age=15768000"
+						},
+						{
+							"key": "Access-Control-Allow-Origin",
+							"value": "*"
+						},
+						{
+							"key": "Access-Control-Allow-Credentials",
+							"value": "true"
+						},
+						{
+							"key": "Access-Control-Allow-Methods",
+							"value": "GET, OPTIONS"
+						},
+						{
+							"key": "Access-Control-Allow-Headers",
+							"value": "Origin, X-Requested-With, Content-Type, Accept"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"payAsYouGoEnabled\": true,\n    \"effectiveDate\": 1547590582000,\n    \"endDateEffective\": 1547830921000,\n    \"subscriptionTermType\": \"monthly\",\n    \"tierName\": \"launch\",\n    \"messageLimit\": 1000000000,\n    \"messagesUsed\": 215141655\n}"
+				}
+			]
+		},
+		{
+			"name": "Usage",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{base_url}}/account/usage/:type",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"account",
+						"usage",
+						":type"
+					],
+					"variable": [
+						{
+							"key": "type",
+							"value": "",
+							"description": "Optional. Used to specify which quota to return. Ex: messages, rules, rule-records, alerts, alert-records"
+						}
+					]
+				},
+				"description": "Used to retrieve current month usage for your account."
+			},
+			"response": []
+		},
+		{
+			"name": "Pay as you go toggle",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "{{base_url}}/account/payasyougo?allow=true",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"account",
+						"payasyougo"
+					],
+					"query": [
+						{
+							"key": "allow",
+							"value": "true",
+							"description": "Required (Boolean) Pass true to enable Pay-as-you-go, or false to disable."
+						}
+					]
+				},
+				"description": "Used to toggle Pay-as-you-go on your account. Note when you turn off pay-as-you-go, there is a 30 second period before you can re-enable."
+			},
+			"response": []
+		},
+		{
+			"name": "Message Cutoff",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "{{base_url}}/account/circuitbreaker?totalMessages=10000000",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"account",
+						"circuitbreaker"
+					],
+					"query": [
+						{
+							"key": "totalMessages",
+							"value": "10000000",
+							"description": "Required (Number) The total messages your account is allowed to consume for the current month above your quota. For example: If your account is allowed 5 million messages, and you do not want to exceed 10 million for the month, then you will pass 10000000 as total messages."
+						}
+					]
+				},
+				"description": "Used to set an upper limit, “circuit breaker”, on pay as you go messages where you want to make sure not to go above a certain amount. Set the total messages you wish to consume for the month, and once that limit is reached, all API calls will stop until the limit is removed or increased."
+			},
+			"response": []
+		}
+	],
+	"auth": {
+		"type": "apikey",
+		"apikey": [
+			{
+				"key": "value",
+				"value": "{{secret_key}}",
+				"type": "string"
+			},
+			{
+				"key": "key",
+				"value": "token",
+				"type": "string"
+			},
+			{
+				"key": "in",
+				"value": "query",
+				"type": "string"
+			}
+		]
+	}
+}

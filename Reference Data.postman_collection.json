@@ -1,0 +1,425 @@
+{
+	"info": {
+		"_postman_id": "5cd569e7-cbdc-4822-bff1-fa38cb5f84f5",
+		"name": "Reference Data",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Symbols",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{base_url}}/ref-data/symbols?",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"ref-data",
+						"symbols"
+					],
+					"query": [
+						{
+							"key": "format",
+							"value": "csv",
+							"description": "• Parameter is optional\n• Value can only be csv\n• When parameter is not present, format defaults to JSON",
+							"disabled": true
+						}
+					]
+				},
+				"description": "This call returns an array of symbols that IEX Cloud supports for API calls."
+			},
+			"response": []
+		},
+		{
+			"name": "IEX Symbols",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{base_url}}/ref-data/symbols?",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"ref-data",
+						"symbols"
+					],
+					"query": [
+						{
+							"key": "format",
+							"value": "csv",
+							"description": "• Parameter is optional\n• Value can only be csv\n• When parameter is not present, format defaults to JSON",
+							"disabled": true
+						}
+					]
+				},
+				"description": "This call returns an array of symbols the Investors Exchange supports for trading. This list is updated daily as of 7:45 a.m. ET. Symbols may be added or removed by the Investors Exchange after the list was produced."
+			},
+			"response": []
+		},
+		{
+			"name": "International Symbols (Region)",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{base_url}}/ref-data/region/:region/symbols?",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"ref-data",
+						"region",
+						":region",
+						"symbols"
+					],
+					"query": [
+						{
+							"key": "format",
+							"value": "csv",
+							"description": "• Parameter is optional\n• Value can only be csv\n• When parameter is not present, format defaults to JSON",
+							"disabled": true
+						}
+					],
+					"variable": [
+						{
+							"key": "region",
+							"value": "ca",
+							"description": "• Required\n• 2 letter case insensitive string of country codes using ISO 3166-1 alpha-2"
+						}
+					]
+				},
+				"description": "This call returns an array of international symbols that IEX Cloud supports for API calls."
+			},
+			"response": []
+		},
+		{
+			"name": "International Symbols (exchange)",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{base_url}}/ref-data/exchange/:exchange/symbols?",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"ref-data",
+						"exchange",
+						":exchange",
+						"symbols"
+					],
+					"query": [
+						{
+							"key": "format",
+							"value": "csv",
+							"description": "• Parameter is optional\n• Value can only be csv\n• When parameter is not present, format defaults to JSON",
+							"disabled": true
+						}
+					],
+					"variable": [
+						{
+							"key": "exchange",
+							"value": "tse",
+							"description": "• Required\n• Case insensitive string of Exchange using IEX Supported Exchanges list"
+						}
+					]
+				},
+				"description": "This call returns an array of international symbols that IEX Cloud supports for API calls."
+			},
+			"response": []
+		},
+		{
+			"name": "International Exchanges",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{base_url}}/ref-data/exchanges?",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"ref-data",
+						"exchanges"
+					],
+					"query": [
+						{
+							"key": "format",
+							"value": "csv",
+							"description": "• Parameter is optional\n• Value can only be csv\n• When parameter is not present, format defaults to JSON",
+							"disabled": true
+						}
+					]
+				},
+				"description": "Returns an array of exchanges."
+			},
+			"response": []
+		},
+		{
+			"name": "U.S. Exchanges",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{base_url}}/ref-data/market/us/exchanges?",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"ref-data",
+						"market",
+						"us",
+						"exchanges"
+					],
+					"query": [
+						{
+							"key": "format",
+							"value": "csv",
+							"description": "• Parameter is optional\n• Value can only be csv\n• When parameter is not present, format defaults to JSON",
+							"disabled": true
+						}
+					]
+				},
+				"description": "Returns an array of U.S. exchanges."
+			},
+			"response": []
+		},
+		{
+			"name": "U.S. Holidays and Trading Dates",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{base_url}}/ref-data/us/dates/:type/:direction/:last/:startDate",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"ref-data",
+						"us",
+						"dates",
+						":type",
+						":direction",
+						":last",
+						":startDate"
+					],
+					"variable": [
+						{
+							"key": "type",
+							"value": "trade",
+							"description": "Required. Can be trade or holiday"
+						},
+						{
+							"key": "direction",
+							"value": "next",
+							"description": "Required. Can be next or last. Default is next. next will return today if today is a holiday."
+						},
+						{
+							"key": "last",
+							"value": "1",
+							"description": "Optional. Number of days to go back or forward. Default is 1"
+						},
+						{
+							"key": "startDate",
+							"value": "",
+							"description": "Optional. Used to specify the start date for next or last. Format is YYYYMMDD. Defaults to today."
+						}
+					]
+				},
+				"description": "This call allows you to fetch a number of trade dates or holidays from a given date. For example, if you want the next trading day, you would call /ref-data/us/dates/trade/next/1."
+			},
+			"response": []
+		},
+		{
+			"name": "Sectors",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{base_url}}//ref-data/sectors",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"",
+						"ref-data",
+						"sectors"
+					]
+				},
+				"description": "Returns an array of sectors."
+			},
+			"response": []
+		},
+		{
+			"name": "Tags",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{base_url}}/ref-data/tags",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"ref-data",
+						"tags"
+					]
+				},
+				"description": "Returns an array of tags. Tags can be found on each company"
+			},
+			"response": []
+		},
+		{
+			"name": "ISIN Mapping",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{ \"token\" : \"{{public_key}}\", \"isin\" : [ \"US5949181045\" ] }"
+				},
+				"url": {
+					"raw": "{{base_url}}/ref-data/isin",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"ref-data",
+						"isin"
+					]
+				},
+				"description": "Helper call to convert ISIN to IEX Cloud symbols. Note that due to licensing restrictions we are unable to return the ISIN."
+			},
+			"response": []
+		},
+		{
+			"name": "Mutual Fund Symbols",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{base_url}}/ref-data/mutual-funds/symbols?",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"ref-data",
+						"mutual-funds",
+						"symbols"
+					],
+					"query": [
+						{
+							"key": "format",
+							"value": "csv",
+							"description": "• Parameter is optional\n• Value can only be csv\n• When parameter is not present, format defaults to JSON",
+							"disabled": true
+						}
+					]
+				},
+				"description": "This call returns an array of mutual fund symbols that IEX Cloud supports for API calls."
+			},
+			"response": []
+		},
+		{
+			"name": "OTC Symbols",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{base_url}}/ref-data/otc/symbols?",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"ref-data",
+						"otc",
+						"symbols"
+					],
+					"query": [
+						{
+							"key": "format",
+							"value": "csv",
+							"description": "• Parameter is optional\n• Value can only be csv\n• When parameter is not present, format defaults to JSON",
+							"disabled": true
+						}
+					]
+				},
+				"description": "This call returns an array of OTC symbols that IEX Cloud supports for API calls."
+			},
+			"response": []
+		},
+		{
+			"name": "FX Symbols",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{base_url}}/ref-data/fx/symbols",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"ref-data",
+						"fx",
+						"symbols"
+					]
+				},
+				"description": "This call returns a list of supported currencies and currency pairs."
+			},
+			"response": []
+		},
+		{
+			"name": "Options Symbols",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{base_url}}/ref-data/options/symbols",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"ref-data",
+						"options",
+						"symbols"
+					]
+				},
+				"description": "This call returns an object keyed by symbol with the value of each symbol being an array of available contract dates."
+			},
+			"response": []
+		}
+	],
+	"auth": {
+		"type": "apikey",
+		"apikey": [
+			{
+				"key": "value",
+				"value": "{{public_key}}",
+				"type": "string"
+			},
+			{
+				"key": "key",
+				"value": "token",
+				"type": "string"
+			},
+			{
+				"key": "in",
+				"value": "query",
+				"type": "string"
+			}
+		]
+	}
+}

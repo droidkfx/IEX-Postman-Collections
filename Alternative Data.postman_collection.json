@@ -1,0 +1,94 @@
+{
+	"info": {
+		"_postman_id": "66abdc07-27f0-4725-808e-3790a24bfa83",
+		"name": "Alternative Data",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Crypto",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{base_url}}/crypto/:symbol/quote",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"crypto",
+						":symbol",
+						"quote"
+					],
+					"variable": [
+						{
+							"key": "symbol",
+							"value": "BTCUSDT"
+						}
+					]
+				},
+				"description": "This will a quote for Cryptocurrencies supported by the IEX API. Each element is a standard quote."
+			},
+			"response": []
+		},
+		{
+			"name": "Social Sentiment",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": ""
+				},
+				"description": "This endpoint provides social sentiment data from StockTwits. Data can be viewed as a daily value, or by minute for a given date."
+			},
+			"response": []
+		},
+		{
+			"name": "CEO Compensation",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{base_url}}/stock/:symbol/ceo-compensation",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"stock",
+						":symbol",
+						"ceo-compensation"
+					],
+					"variable": [
+						{
+							"key": "symbol",
+							"value": "aapl",
+							"description": "valid symbol"
+						}
+					]
+				},
+				"description": "This endpoint provides CEO compensation for a company by symbol."
+			},
+			"response": []
+		}
+	],
+	"auth": {
+		"type": "apikey",
+		"apikey": [
+			{
+				"key": "value",
+				"value": "{{public_key}}",
+				"type": "string"
+			},
+			{
+				"key": "key",
+				"value": "token",
+				"type": "string"
+			},
+			{
+				"key": "in",
+				"value": "query",
+				"type": "string"
+			}
+		]
+	}
+}
