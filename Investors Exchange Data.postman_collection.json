@@ -1,0 +1,591 @@
+{
+	"info": {
+		"_postman_id": "6b013e18-e845-4257-9ab6-71c1ab7c827a",
+		"name": "Investors Exchange Data",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "TOPS",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{base_url}}/tops?symbols=aapl,msft",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"tops"
+					],
+					"query": [
+						{
+							"key": "symbols",
+							"value": "aapl,msft",
+							"description": "• Parameter is optional\n• Value needs to be a comma-separated list of symbols (i.e SNAP,fb)\n• When parameter is not present, request returns all symbols"
+						},
+						{
+							"key": "format",
+							"value": "csv",
+							"description": "• Parameter is optional\n• Value can only be csv\n• When parameter is not present, format defaults to JSON",
+							"disabled": true
+						}
+					]
+				},
+				"description": "TOPS provides IEX’s aggregated best quoted bid and offer position in near real time for all securities on IEX’s displayed limit order book. TOPS is ideal for developers needing both quote and trade data.\n\nFor an example of an app that’s using TOPS, see the TOPS viewer app."
+			},
+			"response": []
+		},
+		{
+			"name": "TOPS last",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{base_url}}/tops/last?symbols=aapl,msft",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"tops",
+						"last"
+					],
+					"query": [
+						{
+							"key": "symbols",
+							"value": "aapl,msft",
+							"description": "• Parameter is optional\n• Value needs to be a comma-separated list of symbols (i.e SNAP,fb)\n• When parameter is not present, request returns all symbols"
+						},
+						{
+							"key": "format",
+							"value": "csv",
+							"description": "• Parameter is optional\n• Value can only be csv\n• When parameter is not present, format defaults to JSON",
+							"disabled": true
+						}
+					]
+				},
+				"description": "Last provides trade data for executions on IEX. It is a near real time, intraday API that provides IEX last sale price, size and time. Last is ideal for developers that need a lightweight stock quote."
+			},
+			"response": []
+		},
+		{
+			"name": "DEEP",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{base_url}}/deep?symbols=aapl",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"deep"
+					],
+					"query": [
+						{
+							"key": "symbols",
+							"value": "aapl",
+							"description": "• Parameter is required\n• Value needs to be a single symbol (i.e snap)"
+						}
+					]
+				},
+				"description": "DEEP is used to receive real-time depth of book quotations direct from IEX. The depth of book quotations received via DEEP provide an aggregated size of resting displayed orders at a price and side, and do not indicate the size or number of individual orders at any price level. Non-displayed orders and non-displayed portions of reserve orders are not represented in DEEP.\n\nDEEP also provides last trade price and size information. Trades resulting from either displayed or non-displayed orders matching on IEX will be reported. Routed executions will not be reported.\n\n"
+			},
+			"response": []
+		},
+		{
+			"name": "DEEP auction",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{base_url}}/deep?symbols=aapl",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"deep"
+					],
+					"query": [
+						{
+							"key": "symbols",
+							"value": "aapl",
+							"description": "• Parameter is required\n• Value needs to be a single symbol (i.e snap)"
+						}
+					]
+				},
+				"description": "DEEP broadcasts an Auction Information Message every one second between the Lock-in Time and the auction match for Opening and Closing Auctions, and during the Display Only Period for IPO, Halt, and Volatility Auctions. Only IEX listed securities are eligible for IEX Auctions."
+			},
+			"response": []
+		},
+		{
+			"name": "DEEP book",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{base_url}}/deep/book?symbols=aapl",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"deep",
+						"book"
+					],
+					"query": [
+						{
+							"key": "symbols",
+							"value": "aapl",
+							"description": "• Parameter is required\n• Value needs to be a single symbol (i.e snap)"
+						}
+					]
+				},
+				"description": "Book shows IEX’s bids and asks for given symbols."
+			},
+			"response": []
+		},
+		{
+			"name": "DEEP Operational Halt Status",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{base_url}}/deep/op-halt-status?symbols=aapl",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"deep",
+						"op-halt-status"
+					],
+					"query": [
+						{
+							"key": "symbols",
+							"value": "aapl",
+							"description": "• Parameter is required\n• Value needs to be a single symbol (i.e snap)"
+						}
+					]
+				},
+				"description": "The Exchange may suspend trading of one or more securities on IEX for operational reasons and indicates such operational halt using the Operational halt status message.\n\nIEX disseminates a full pre-market spin of Operational halt status messages indicating the operational halt status of all securities. In the spin, IEX will send out an Operational Halt Message with “N” (Not operationally halted on IEX) for all securities that are eligible for trading at the start of the Pre-Market Session. If a security is absent from the dissemination, firms should assume that the security is being treated as operationally halted in the IEX Trading System at the start of the Pre-Market Session.\n\nAfter the pre-market spin, IEX will use the Operational halt status message to relay changes in operational halt status for an individual security."
+			},
+			"response": []
+		},
+		{
+			"name": "DEEP Official Price",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{base_url}}/deep/official-price?symbols=aapl",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"deep",
+						"official-price"
+					],
+					"query": [
+						{
+							"key": "symbols",
+							"value": "aapl",
+							"description": "• Parameter is required\n• Value needs to be a single symbol (i.e snap)"
+						}
+					]
+				},
+				"description": "The Official Price message is used to disseminate the IEX Official Opening and Closing Prices."
+			},
+			"response": []
+		},
+		{
+			"name": "DEEP Security Event",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{base_url}}/deep/security-event?symbols=aapl",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"deep",
+						"security-event"
+					],
+					"query": [
+						{
+							"key": "symbols",
+							"value": "aapl",
+							"description": "• Parameter is required\n• Value needs to be a single symbol (i.e snap)"
+						}
+					]
+				},
+				"description": "The Security event message is used to indicate events that apply to a security. A Security event message will be sent whenever such event occurs."
+			},
+			"response": []
+		},
+		{
+			"name": "DEEP Short Sale Price Test Status",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{base_url}}/deep/ssr-status?symbols=aapl",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"deep",
+						"ssr-status"
+					],
+					"query": [
+						{
+							"key": "symbols",
+							"value": "aapl",
+							"description": "• Parameter is required\n• Value needs to be a single symbol (i.e snap)"
+						}
+					]
+				},
+				"description": "In association with Rule 201 of Regulation SHO, the Short Sale Price Test Message is used to indicate when a short sale price test restriction is in effect for a security.\n\nIEX disseminates a full pre-market spin of Short sale price test status messages indicating the Rule 201 status of all securities. After the pre-market spin, IEX will use the Short sale price test status message in the event of an intraday status change.\n\nThe IEX Trading System will process orders based on the latest short sale price test restriction status."
+			},
+			"response": []
+		},
+		{
+			"name": "DEEP System Event",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{base_url}}/deep/system-event",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"deep",
+						"system-event"
+					]
+				},
+				"description": "The System event message is used to indicate events that apply to the market or the data feed.\nThere will be a single message disseminated per channel for each System Event type within a given trading session."
+			},
+			"response": []
+		},
+		{
+			"name": "DEEP Trades",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{base_url}}/deep/trades?symbols=aapl",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"deep",
+						"trades"
+					],
+					"query": [
+						{
+							"key": "symbols",
+							"value": "aapl",
+							"description": "• Parameter is required\n• Value needs to be a single symbol (i.e snap)"
+						},
+						{
+							"key": "last",
+							"value": "",
+							"description": "• Parameter is optional\n• Value needs to be a number (i.e 5)\n• Default is 20\n• Maximum of 500",
+							"disabled": true
+						}
+					]
+				},
+				"description": "Trade report messages are sent when an order on the IEX Order Book is executed in whole or in part. DEEP sends a Trade report message for every individual fill."
+			},
+			"response": []
+		},
+		{
+			"name": "DEEP Trade Break",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{base_url}}/deep/trade-breaks?symbols=aapl",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"deep",
+						"trade-breaks"
+					],
+					"query": [
+						{
+							"key": "symbols",
+							"value": "aapl",
+							"description": "• Parameter is required\n• Value needs to be a single symbol (i.e snap)"
+						},
+						{
+							"key": "last",
+							"value": "",
+							"description": "• Parameter is optional\n• Value needs to be a number (i.e 5)\n• Default is 20\n• Maximum of 500",
+							"disabled": true
+						}
+					]
+				},
+				"description": "Trade break messages are sent when an execution on IEX is broken on that same trading day. Trade breaks are rare and only affect applications that rely upon IEX execution based data."
+			},
+			"response": []
+		},
+		{
+			"name": "DEEP Trading Status",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{base_url}}/deep/trading-status?symbols=aapl",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"deep",
+						"trading-status"
+					],
+					"query": [
+						{
+							"key": "symbols",
+							"value": "aapl",
+							"description": "• Parameter is required\n• Value needs to be a single symbol (i.e snap)"
+						}
+					]
+				},
+				"description": "The Trading status message is used to indicate the current trading status of a security. For IEX-listed securities, IEX acts as the primary market and has the authority to institute a trading halt or trading pause in a security due to news dissemination or regulatory reasons. For non-IEX-listed securities, IEX abides by any regulatory trading halts and trading pauses instituted by the primary or listing market, as applicable.\n\nIEX disseminates a full pre-market spin of Trading status messages indicating the trading status of all securities. In the spin, IEX will send out a Trading status message with “T” (Trading) for all securities that are eligible for trading at the start of the Pre-Market Session. If a security is absent from the dissemination, firms should assume that the security is being treated as operationally halted in the IEX Trading System.\n\nAfter the pre-market spin, IEX will use the Trading status message to relay changes in trading status for an individual security. Messages will be sent when a security is:\n\nHalted\nPaused*\nReleased into an Order Acceptance Period*\nReleased for trading\n\nThe paused and released into an Order Acceptance Period status will be disseminated for IEX-listed securities only. Trading pauses on non-IEX-listed securities will be treated simply as a halt."
+			},
+			"response": []
+		},
+		{
+			"name": "Listed Regulation SHO Threshold Securities List (IN DEV)",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{base_url}}/stock/:symbol/threshold-securities/:date?",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"stock",
+						":symbol",
+						"threshold-securities",
+						":date"
+					],
+					"query": [
+						{
+							"key": "format",
+							"value": "csv",
+							"description": "• Parameter is optional\n• Value can be csv or psv\n• When parameter is not present, format defaults to JSON",
+							"disabled": true
+						}
+					],
+					"variable": [
+						{
+							"key": "symbol",
+							"value": "market",
+							"description": "A valid symbol"
+						},
+						{
+							"key": "date",
+							"value": "sample",
+							"description": "Daily list data for a specified date in the format YYYYMMDD,if available, or sample. If sample, a sample file will be returned"
+						}
+					]
+				},
+				"description": "The following are IEX-listed securities that have an aggregate fail to deliver position for five consecutive settlement days at a registered clearing agency, totaling 10,000 shares or more and equal to at least 0.5% of the issuer’s total shares outstanding (i.e., “threshold securities”).\n\nThe report data will be published to the IEX website daily at 8:30 p.m. ET with data for that trading day."
+			},
+			"response": []
+		},
+		{
+			"name": "Listed Short Interest List (IN DEV)",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{base_url}}/stock/:symbol/threshold-securities/:date?",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"stock",
+						":symbol",
+						"threshold-securities",
+						":date"
+					],
+					"query": [
+						{
+							"key": "format",
+							"value": "csv",
+							"description": "• Parameter is optional\n• Value can be csv or psv\n• When parameter is not present, format defaults to JSON",
+							"disabled": true
+						}
+					],
+					"variable": [
+						{
+							"key": "symbol",
+							"value": "market",
+							"description": "A valid symbol"
+						},
+						{
+							"key": "date",
+							"value": "sample",
+							"description": "Daily list data for a specified date in the format YYYYMMDD,if available, or sample. If sample, a sample file will be returned"
+						}
+					]
+				},
+				"description": "The following are IEX-listed securities that have an aggregate fail to deliver position for five consecutive settlement days at a registered clearing agency, totaling 10,000 shares or more and equal to at least 0.5% of the issuer’s total shares outstanding (i.e., “threshold securities”).\n\nThe report data will be published to the IEX website daily at 8:30 p.m. ET with data for that trading day."
+			},
+			"response": []
+		},
+		{
+			"name": "Stats Historical Daily (IN DEV)",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{base_url}}/stats/historical/daily?",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"stats",
+						"historical",
+						"daily"
+					],
+					"query": [
+						{
+							"key": "last",
+							"value": "5",
+							"description": "• Parameter is optional\n• Is used in place of date to retrieve last n number of trading days.\n• Value can only be a number up to 90",
+							"disabled": true
+						},
+						{
+							"key": "date",
+							"value": "",
+							"description": "• Parameter is optional\n• Option 1: Value needs to be in four-digit year, two-digit month format (YYYYMM) (i.e January 2017 would be written as 201701)\n• Option 2: Value needs to be in four-digit year, two-digit month, two-digit day format (YYYYMMDD) (i.e January 21, 2017 would be written as 20170121)\n• Historical data is only available for prior months, starting with January 2014",
+							"disabled": true
+						},
+						{
+							"key": "format",
+							"value": "csv",
+							"description": "• Parameter is optional\n• Value can only be csv\n• When parameter is not present, format defaults to JSON",
+							"disabled": true
+						}
+					]
+				},
+				"description": "This call will return daily stats for a given month or day."
+			},
+			"response": []
+		},
+		{
+			"name": "Stats Historical",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{base_url}}/stats/historical/daily",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"stats",
+						"historical",
+						"daily"
+					],
+					"query": [
+						{
+							"key": "date",
+							"value": "",
+							"description": "• Parameter is optional\n• Value needs to be in four-digit year, two-digit month format (YYYYMM) (i.e January 2017 would be written as 201701)\n• Historical data is only available for prior months, starting with January 2014\n• When parameter is not present, request returns prior month’s data",
+							"disabled": true
+						},
+						{
+							"key": "format",
+							"value": "csv",
+							"description": "• Parameter is optional\n• Value can only be csv\n• When parameter is not present, format defaults to JSON",
+							"disabled": true
+						}
+					]
+				},
+				"description": "This call will return daily stats for a given month or day."
+			},
+			"response": []
+		},
+		{
+			"name": "Stats Intraday",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{base_url}}/stats/intraday",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"stats",
+						"intraday"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Stats Recent",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{base_url}}/stats/intraday",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"stats",
+						"intraday"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Stats Records",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{base_url}}/stats/intraday",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"stats",
+						"intraday"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"auth": {
+		"type": "apikey",
+		"apikey": [
+			{
+				"key": "value",
+				"value": "{{public_key}}",
+				"type": "string"
+			},
+			{
+				"key": "key",
+				"value": "token",
+				"type": "string"
+			},
+			{
+				"key": "in",
+				"value": "query",
+				"type": "string"
+			}
+		]
+	}
+}
