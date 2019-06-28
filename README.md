@@ -7,6 +7,9 @@ To use this interface in postman:
 2. Either clone the repository or download one of the releases. 
 3. Using the import button in the top left of the postman application import all the *.json files.
 4. Set the "secret_key" and "public_key" values to your IEX tokens for test in TEST_V1 and for production in PROD_V1. _Note: do not set the initial value for security purposes._
+5. Get hacking!
+
+NOTE : Some requests will not be availible to all users since IEX allows "premium" requests for only customers who pay. Those requests will return a 402 error and a message saying as much. 
 
 ## DEEP and TOPS
 The "DEEP" and "TOPS" endpoints have been included for completeness under the "Investors Exchange Data.postman_collection.json" collection. These endpoints will work with postman however their true value lies in the web socket subscription to those data sources. It is not recommended to use a standard http request to those endpoints in an application.
