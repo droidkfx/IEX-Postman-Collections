@@ -37,6 +37,106 @@
 				"description": "Data points are available per symbol and return individual plain text values. Retrieving individual data points is useful for Excel and Google Sheet users, and applications where a single, lightweight value is needed. We also provide update times for some endpoints which allow you to call an endpoint only once it has new data.\n\nTo use this endpoint, you’ll first make a free call to list all available data points for your desired symbol, which can be a security or data category."
 			},
 			"response": []
+		},
+		{
+			"name": "Time Series Inventory",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{base_url}}/time-series",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"time-series"
+					]
+				},
+				"description": "A full inventory of time series data is returned by calling /time-series without a data id. The data structure returned is an array of available data sets that includes the data set id, a description of the data set, the data weight, a data schema, date created, and last updated date. The schema defines the minimum data properties for the data set, but note that additional properties can be returned. This is possible when data varies between keys of a given data set. \n\nEach inventory entry may include a key and subkey which describes what can be used for the key or subkey parameter."
+			},
+			"response": []
+		},
+		{
+			"name": "Time Series Query",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{base_url}}/time-series/:id/:key/:subkey",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"time-series",
+						":id",
+						":key",
+						":subkey"
+					],
+					"query": [
+						{
+							"key": "from",
+							"value": "2015-01-01",
+							"description": "Optional\nReturns data on or after the given from date. Format YYYY-MM-DD. Used together with the to parameter to define a date range.",
+							"disabled": true
+						},
+						{
+							"key": "to",
+							"value": "2016-01-01",
+							"description": "Optional\nReturns data on or before the given to date. Format YYYY-MM-DD",
+							"disabled": true
+						},
+						{
+							"key": "on",
+							"value": "2016-01-01",
+							"description": "Optional\nReturns data on the given date. Format YYYY-MM-DD",
+							"disabled": true
+						},
+						{
+							"key": "last",
+							"value": "3",
+							"description": "Optional\nReturns the latest n number of records in the series",
+							"disabled": true
+						},
+						{
+							"key": "first",
+							"value": "3",
+							"description": "Optional\nReturns the first n number of records in the series",
+							"disabled": true
+						},
+						{
+							"key": "filter",
+							"value": "",
+							"description": "Optional\nThe standard filter parameter. Filters return data to the specified comma delimited list of keys (case-sensitive)",
+							"disabled": true
+						},
+						{
+							"key": "format",
+							"value": "csv",
+							"description": "Optional\nThe standard format parameter. Returns data as JSON by default. See the data format section for supported types.",
+							"disabled": true
+						}
+					],
+					"variable": [
+						{
+							"key": "id",
+							"value": "REPORTED_FINANCIALS",
+							"description": "Required\nID used to identify a time series dataset."
+						},
+						{
+							"key": "key",
+							"value": "AAPL",
+							"description": "Required\nKey used to identify data within a dataset. A common example is a symbol such as AAPL."
+						},
+						{
+							"key": "subkey",
+							"value": "",
+							"description": "Optional\nThe optional subkey can used to further refine data for a particular key if available."
+						}
+					]
+				},
+				"description": "A full inventory of time series data is returned by calling /time-series without a data id. The data structure returned is an array of available data sets that includes the data set id, a description of the data set, the data weight, a data schema, date created, and last updated date. The schema defines the minimum data properties for the data set, but note that additional properties can be returned. This is possible when data varies between keys of a given data set. \n\nEach inventory entry may include a key and subkey which describes what can be used for the key or subkey parameter."
+			},
+			"response": []
 		}
 	],
 	"auth": {
