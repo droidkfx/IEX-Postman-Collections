@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "5cd569e7-cbdc-4822-bff1-fa38cb5f84f5",
+		"_postman_id": "154f130d-1af7-4fcd-bb88-7e6bfa8f5188",
 		"name": "Reference Data",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
@@ -29,6 +29,40 @@
 					]
 				},
 				"description": "This call returns an array of symbols that IEX Cloud supports for API calls."
+			},
+			"response": []
+		},
+		{
+			"name": "Search",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{base_url}}/search/:fragment:",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"search",
+						":fragment:"
+					],
+					"query": [
+						{
+							"key": "format",
+							"value": "csv",
+							"description": "• Parameter is optional\n• Value can only be csv\n• When parameter is not present, format defaults to JSON",
+							"disabled": true
+						}
+					],
+					"variable": [
+						{
+							"key": "fragment:",
+							"value": "aa",
+							"description": "URL encoded search string. Currently search by symbol or security name."
+						}
+					]
+				},
+				"description": "Returns an array of symbols up to the top 10 matches. Results will be sorted for relevancy. Search currently defaults to equities only, where the symbol returned is supported by endpoints listed under the Stocks category."
 			},
 			"response": []
 		},
@@ -239,12 +273,11 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "{{base_url}}//ref-data/sectors",
+					"raw": "{{base_url}}/ref-data/sectors",
 					"host": [
 						"{{base_url}}"
 					],
 					"path": [
-						"",
 						"ref-data",
 						"sectors"
 					]
