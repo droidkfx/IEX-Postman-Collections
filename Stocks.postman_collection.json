@@ -1272,7 +1272,7 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": ""
+					"raw": "{{base_url}}/stock/market/sector-performance"
 				},
 				"description": "This returns an array of each sector and performance for the current trading day. Performance is based on each sector ETF."
 			},
